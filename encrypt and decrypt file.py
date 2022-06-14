@@ -1,12 +1,12 @@
 import os
 def crypto(path, check, password):
     xor = 0
+    for j in password:
+        xor ^= ord(j)
     if os.path.exists(path):
         with open(path, "rb") as file:
             with open(os.getcwd() + "/" + check, "wb") as file1:
                 for i in file.read():
-                    for j in password:
-                        xor ^= ord(j)
                     i ^= xor
                     file1.write(i.to_bytes(1, "big"))
         print("success")
